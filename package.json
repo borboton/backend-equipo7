@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "start": "nodemon src/server.js",
+    "start": "node src/server.js",
     "format": "prettier --write \"src/**/*.{ts,tsx,json,js,jsx}\"",
     "format:fix:staged": "prettier --write",
     "format:check": "prettier --list-different \"src/**/*.{ts,tsx,json,js,jsx}\"",
