@@ -15,7 +15,7 @@
   "plugins": ["prettier"],
   "rules": {
     "linebreak-style": 0,
-    "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow"}],
+    "prettier/prettier": ["error", {"singleQuote": true, "parser": "flow","endOfLine":"auto"}],
     "no-unused-vars": "warn",
     "no-console": "off",
     "quotes": [2, "single", { "avoidEscape": true }],
