@@ -31,13 +31,13 @@ const UserSchema = new Schema({
   phone: {
     type: String,
   },
-  marital_status: {
+  maritalStatus: {
     type: String,
   },
-  addresss: {
+  address: {
     type: String,
   },
-  birthdayt: {
+  birthday: {
     type: Date,
   },
 });

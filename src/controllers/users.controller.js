@@ -3,10 +3,9 @@ const { getUsers, postUser } = require('../models/user.model');
 async function getUsersController(req, res) {
   const users = await getUsers();
   if (users) {
-    res.json(users);
-  } else {
-    res.json('sin usuarios');
+    return res.status(200).json(users);
   }
+  return res.json('sin usuarios');
 }
 
 async function postUserController(req, res) {
