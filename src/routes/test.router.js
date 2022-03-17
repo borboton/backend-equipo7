@@ -1,9 +1,12 @@
 const express = require('express');
+const { getUsersController } = require('../controllers/user.controller');
+const { postUserController } = require('../controllers/user.controller');
 
 const testRouter = express.Router();
 
-testRouter.get('/', (req, res) => {
-  res.json({ message: 'this is a test!' });
-});
+//  test routes
+
+testRouter.get('/user', getUsersController);
+testRouter.post('/user', postUserController);
 
 module.exports = testRouter;
