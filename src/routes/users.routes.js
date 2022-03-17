@@ -2,17 +2,20 @@ const express = require('express');
 const passport = require('passport');
 const logger = require('../config/logger');
 const {
-  getUsersController,
+  getUserController,
   postUserController,
+  getRolUserController,
+  getUserCoursesController,
+  getUserSoftwareController,
 } = require('../controllers/user.controller');
 
 const usersRouter = express.Router();
 
-usersRouter.get('/', getUsersController);
-// usersRouter.get('/:id', httpGetUserById);
-// usersRouter.get('/:id/roles', httpGetUserRoles);
-// usersRouter.get('/:id/courses', httpGetUserCourses);
-// usersRouter.get('/:id/software', httpGetSoftwareAccess);
+// usersRouter.get('/', getUsersController);
+usersRouter.get('/:id', getUserController);
+usersRouter.get('/:id/rol', getRolUserController);
+usersRouter.get('/:id/courses', getUserCoursesController);
+usersRouter.get('/:id/software', getUserSoftwareController);
 usersRouter.post('/', postUserController);
 // Login with passport
 usersRouter.post('/signin', async (req, res, next) => {
