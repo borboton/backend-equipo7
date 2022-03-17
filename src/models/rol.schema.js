@@ -1,6 +1,4 @@
 const mongoose = require('mongoose');
-const Course = require('./course.schema');
-const SofwareAccess = require('./softwareAccess.schema');
 
 const rolSchema = new mongoose.Schema({
   title: {
@@ -27,8 +25,8 @@ const rolSchema = new mongoose.Schema({
     type: String,
     // required: true,
   },
-  courses: [Course],
-  softwareAccess: [SofwareAccess],
+  courses: [{ type: mongoose.Types.ObjectId, ref: 'Course' }],
+  softwareAccess: [{ type: mongoose.Types.ObjectId, ref: 'SofwareAccess' }],
 });
 
 module.exports = mongoose.model('Rol', rolSchema);

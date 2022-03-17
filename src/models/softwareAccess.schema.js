@@ -19,4 +19,4 @@ const softwareAccessSchema = mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model('SofwareAccess', softwareAccessSchema);
+module.exports = mongoose.model('SoftwareAccess', softwareAccessSchema);
