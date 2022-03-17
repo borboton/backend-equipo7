@@ -4,6 +4,7 @@ const compression = require('compression');
 const api = require('./routes/api');
 
 const app = express();
+require('./config/passport');
 
 app.use(express.json());
 
