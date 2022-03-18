@@ -10,10 +10,10 @@ const {
 
 const rolRouter = express.Router();
 
-rolRouter.get('/', getAllRols);
-rolRouter.get('/:id', getRolById);
-rolRouter.post('/', postRol);
-rolRouter.put('/:id', putRolById);
-rolRouter.delete('/:id', deleteRolById);
+// rolRouter.get('/', getAllRols);
+// rolRouter.get('/:id', getRolById);
+// rolRouter.post('/', postRol);
+// rolRouter.put('/:id', putRolById);
+// rolRouter.delete('/:id', deleteRolById);
 
 module.exports = rolRouter;

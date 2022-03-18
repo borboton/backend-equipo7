@@ -10,10 +10,10 @@ const {
 
 const softwareAccessRouter = express.Router();
 
-softwareAccessRouter.get('/', getAllSoftware);
-softwareAccessRouter.get('/:id', getSoftwareById);
-softwareAccessRouter.post('/', postSoftware);
-softwareAccessRouter.put('/:id', putSoftwareById);
-softwareAccessRouter.delete('/:id', deleteSoftwareById);
+// softwareAccessRouter.get('/', getAllSoftware);
+// softwareAccessRouter.get('/:id', getSoftwareById);
+// softwareAccessRouter.post('/', postSoftware);
+// softwareAccessRouter.put('/:id', putSoftwareById);
+// softwareAccessRouter.delete('/:id', deleteSoftwareById);
 
 module.exports = softwareAccessRouter;

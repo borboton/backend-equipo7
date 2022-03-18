@@ -1,9 +1,15 @@
+const mongoose = require('mongoose');
 const {
   getUser,
+  getAllUsers,
+  updateRolUser,
   postUser,
   getUserRol,
   getUserById,
+  deleteRolUser,
   saveUser,
+  updateUser,
+  deleteUser,
 } = require('../models/user.model');
 const {
   getRol,
@@ -107,11 +113,50 @@ async function postAddRolUserController(req, res) {
 
   return res.status(201).json(result);
 }
+
+async function getUsersController(req, res) {
+  const response = await getAllUsers();
+  res.status(200).json(response);
+}
+
+async function putUserController(req, res) {
+  const userFile = req.params.id;
+  const { body } = req;
+  const response = await updateUser({ userFile }, body);
+  res.status(200).json(response);
+}
+
+async function deleteUserController(req, res) {
+  const userFile = req.params.id;
+  const response = await deleteUser({ userFile });
+  res.status(200).json(response);
+}
+
+async function putRolUserController(req, res) {
+  const { id, idRol } = req.params;
+  const response = await updateRolUser(
+    { id },
+    { rol: [mongoose.Types.ObjectId(idRol)] }
+  );
+  res.status(200).json(response);
+}
+
+async function deleteRolUserController(req, res) {
+  const { id } = req.params;
+  const response = await deleteRolUser({ id }, { rol: [] });
+  res.status(200).json(response);
+}
+
 module.exports = {
+  putUserController,
   getUserController,
   postUserController,
   getRolUserController,
   getUserCoursesController,
   getUserSoftwareController,
   postAddRolUserController,
+  getUsersController,
+  deleteUserController,
+  putRolUserController,
+  deleteRolUserController,
 };
