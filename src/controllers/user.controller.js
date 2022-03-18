@@ -85,9 +85,8 @@ async function getUserCoursesController(req, res) {
 async function getUserSoftwareController(req, res) {
   const userFile = req.params.id;
   try {
-    const software = await getSoftware(
-      await getUserSoftware(await getUserRol({ userFile }))
-    );
+    const [rol] = await getUserRol({ userFile });
+    const software = await getSoftware(await getUserSoftware(rol.rolId));
     if (software) {
       res.status(200).json(software);
     } else {
