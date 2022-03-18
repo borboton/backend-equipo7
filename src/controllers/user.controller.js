@@ -1,15 +1,24 @@
 const { getUser, postUser, getUserRol } = require('../models/user.model');
-const { getRol, getUserCourses, getUserSoftware } = require('./rol.controller');
-const { getCourses } = require('./courses.controller');
-const { getSoftware } = require('./softwareAccess.controller');
+const {
+  getRol,
+  getUserCourses,
+  getUserSoftware,
+} = require('../models/rol.model');
+const { getCourses } = require('../models/courses.model');
+const { getSoftware } = require('../models/softwareAccess.model');
 
 async function getUserController(req, res) {
   const userFile = req.params.id;
-  const users = await getUser(userFile);
-  if (users) {
-    return res.status(200).json(users);
+  try {
+    const user = await getUser(userFile);
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ code: 404, message: 'User not found' });
+    }
+  } catch (error) {
+    console.log(error);
   }
-  return res.json('sin usuarios');
 }
 
 async function postUserController(req, res) {
@@ -18,35 +27,62 @@ async function postUserController(req, res) {
     name,
     password,
   };
-  const users = await postUser(data);
-  if (users) {
-    res.json(users);
-  } else {
-    res.json('sin usuarios');
+  try {
+    const users = await postUser(data);
+    if (users) {
+      res.status(201).json(users);
+    } else {
+      res.status(409).json({ code: 409, message: 'Conflict' });
+    }
+  } catch (error) {
+    console.log(error);
   }
 }
 
 async function getRolUserController(req, res) {
   const userFile = req.params.id;
-  const rol = await getUserRol({ userFile });
-  const data = await getRol(rol);
-  return res.status(200).json(data);
+  try {
+    const rol = await getRol(await getUserRol({ userFile }));
+    if (rol) {
+      res.status(200).json(rol);
+    } else {
+      res.status(404).json({ code: 404, message: 'User not found' });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function getUserCoursesController(req, res) {
   const userFile = req.params.id;
-  const rol = await getUserRol({ userFile });
-  const courses = await getUserCourses(rol);
-  const response = await getCourses(courses);
-  return res.status(200).json(response);
+  try {
+    const courses = await getCourses(
+      await getUserCourses(await getUserRol({ userFile }))
+    );
+    if (courses) {
+      res.status(200).json(courses);
+    } else {
+      res.status(404).json({ code: 404, message: 'User not found' });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 async function getUserSoftwareController(req, res) {
   const userFile = req.params.id;
-  const rol = await getUserRol({ userFile });
-  const software = await getUserSoftware(rol);
-  const response = await getSoftware(software);
-  return res.status(200).json(response);
+  try {
+    const software = await getSoftware(
+      await getUserSoftware(await getUserRol({ userFile }))
+    );
+    if (software) {
+      res.status(200).json(software);
+    } else {
+      res.status(404).json({ code: 404, message: 'User not found' });
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 module.exports = {

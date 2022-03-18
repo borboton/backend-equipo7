@@ -1,4 +1,4 @@
-const Course = require('../models/course.schema');
+const Course = require('./course.schema');
 
 async function getCourses(courses) {
   const response = await Course.find({ courses });

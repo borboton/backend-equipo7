@@ -1,4 +1,4 @@
-const Rol = require('../models/rol.schema');
+const Rol = require('./rol.schema');
 
 const getRol = async (id) => {
   const data = await Rol.findById({ _id: id });

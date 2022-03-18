@@ -2,7 +2,6 @@ const User = require('./user.schema');
 
 const getUser = async (userFile) => {
   const data = await User.findOne({ userFile });
-  console.log(data.rol);
   return data;
 };
 
