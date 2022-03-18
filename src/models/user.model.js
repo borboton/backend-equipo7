@@ -24,4 +24,42 @@ const getUserRol = async (userFile) => {
   return rol;
 };
 
-module.exports = { getUser, postUser, getUserRol, getUserById, saveUser };
+const getAllUsers = async () => {
+  const response = await User.find();
+  return response;
+};
+
+const updateUser = async (userFile, newData) => {
+  const response = await User.updateOne(userFile, newData);
+  return response;
+};
+
+const deleteUser = async (userFile) => {
+  const response = await User.remove(userFile);
+  return response;
+};
+
+const updateRolUser = async (userFile, rolId) => {
+  const response = await User.updateOne(userFile, rolId);
+  return response;
+};
+
+const deleteRolUser = async (userFile, rolId) => {
+  const response = await User.updateOne(userFile, rolId);
+  return response;
+};
+
+// const updateUserCourse = async (userFile)
+
+module.exports = {
+  deleteUser,
+  updateUser,
+  getAllUsers,
+  getUser,
+  postUser,
+  getUserRol,
+  getUserById,
+  saveUser,
+  updateRolUser,
+  deleteRolUser,
+};
