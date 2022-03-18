@@ -14,6 +14,9 @@ MVP creado por el equipo 7 para la Hackaton Tech Station por Telecom.
 
 **Wireframe:** https://miro.com/app/board/uXjVOE7lkRE=/
 
+**Repository Frontend:** https://github.com/svillavicencio/frontend-equipo7
+
+
 
 ## Authors
 
