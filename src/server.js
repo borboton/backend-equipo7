@@ -3,7 +3,7 @@ const http = require('http');
 const app = require('./app');
 const { mongoConnect } = require('./services/mongo');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8081;
 
 const logger = require('./config/logger');
 

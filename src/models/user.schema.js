@@ -3,6 +3,13 @@ const bcrypt = require('bcrypt');
 
 const { Schema } = mongoose;
 
+const RolUserSchema = new Schema({
+  rolId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Rol',
+  },
+});
+
 const UserSchema = new Schema({
   email: {
     type: String,
@@ -20,12 +27,13 @@ const UserSchema = new Schema({
     type: String,
   },
   userFile: {
-    type: Number,
+    type: String,
   },
-  rol: {
-    type: Schema.Types.ObjectId,
-    ref: 'Rol',
-  },
+  rol: [
+    // type: Schema.Types.ObjectId,
+    // ref: 'Rol',
+    RolUserSchema,
+  ],
   avatar: {
     type: String,
   },

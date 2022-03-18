@@ -13,17 +13,17 @@ passport.use(
       passwordField: 'password',
       passReqToCallback: true,
     },
-    async (req, email, password, done) => {
+    async (req, userFile, password, done) => {
       try {
-        const { name, lastname, userFile, avatar, phone, maritalStatus } =
+        const { name, lastname, email, avatar, phone, maritalStatus } =
           req.body;
         logger.info(req.body);
         const user = await User.create({
-          email,
+          userFile,
           password,
+          email,
           name,
           lastname,
-          userFile,
           avatar,
           phone,
           maritalStatus,
