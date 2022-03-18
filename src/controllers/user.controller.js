@@ -5,8 +5,8 @@ const {
   updateRolUser,
   postUser,
   getUserRol,
-  getUserById,
   deleteRolUser,
+  updateUserCourse,
   saveUser,
   updateUser,
   deleteUser,
@@ -54,25 +54,26 @@ async function postUserController(req, res) {
 async function getRolUserController(req, res) {
   const userFile = req.params.id;
   try {
-    const rol = await getRol(await getUserRol({ userFile }));
-    if (rol) {
+    const [rolId] = await getUserRol({ userFile });
+    if (rolId) {
+      const rol = await getRol(mongoose.Types.ObjectId(rolId.rolId));
       res.status(200).json(rol);
     } else {
-      res.status(404).json({ code: 404, message: 'User not found' });
+      res.status(404).json({ code: 404, message: 'Rol not found' });
     }
   } catch (error) {
-    console.error(error);
+    res.status(404).json(error);
   }
 }
 
 async function getUserCoursesController(req, res) {
   const userFile = req.params.id;
   try {
-    const courses = await getCourses(
-      await getUserCourses(await getUserRol({ userFile }))
-    );
-    if (courses) {
-      res.status(200).json(courses);
+    const [rol] = await getUserRol({ userFile });
+    const [courses] = await getUserCourses(rol.rolId);
+    const data = await getCourses(courses);
+    if (data) {
+      res.status(200).json(data);
     } else {
       res.status(404).json({ code: 404, message: 'User not found' });
     }
@@ -98,7 +99,7 @@ async function getUserSoftwareController(req, res) {
 }
 async function postAddRolUserController(req, res) {
   const { id, idRol } = req.params;
-  const user = await getUserById(id);
+  const user = await getUser(id);
   const { _id } = await getRol(idRol);
   if (!_id) {
     return res.status(500).json({

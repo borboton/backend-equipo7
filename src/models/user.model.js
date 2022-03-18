@@ -49,6 +49,8 @@ const deleteRolUser = async (userFile, rolId) => {
   return response;
 };
 
+// const updateUserCourse = async (userFile)
+
 module.exports = {
   deleteUser,
   updateUser,
