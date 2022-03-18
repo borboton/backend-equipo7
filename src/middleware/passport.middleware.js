@@ -3,6 +3,7 @@ const logger = require('../config/logger');
 
 async function signIn(req, res, next) {
   passport.authenticate('signin', async (err, user, info) => {
+    console.log(err, user, info);
     try {
       if (err || !user) {
         logger.info(err);

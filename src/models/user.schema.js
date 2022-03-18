@@ -27,7 +27,7 @@ const UserSchema = new Schema({
     type: String,
   },
   userFile: {
-    type: Number,
+    type: String,
   },
   rol: [
     // type: Schema.Types.ObjectId,
