@@ -1,4 +1,10 @@
-const { getUser, postUser, getUserRol } = require('../models/user.model');
+const {
+  getUser,
+  postUser,
+  getUserRol,
+  getUserById,
+  saveUser,
+} = require('../models/user.model');
 const { getRol, getUserCourses, getUserSoftware } = require('./rol.controller');
 const { getCourses } = require('./courses.controller');
 const { getSoftware } = require('./softwareAccess.controller');
@@ -48,11 +54,28 @@ async function getUserSoftwareController(req, res) {
   const response = await getSoftware(software);
   return res.status(200).json(response);
 }
+async function postAddRolUserController(req, res) {
+  const { id, idRol } = req.params;
+  const user = await getUserById(id);
+  const { _id } = await getRol(idRol);
+  if (!_id) {
+    return res.status(500).json({
+      type: 'Rol not founded',
+      msg: 'Invalid request',
+    });
+  }
+  user.rol.push({
+    rolId: _id,
+  });
+  const result = await saveUser(user);
 
+  return res.json(result);
+}
 module.exports = {
   getUserController,
   postUserController,
   getRolUserController,
   getUserCoursesController,
   getUserSoftwareController,
+  postAddRolUserController,
 };

@@ -5,6 +5,15 @@ const getUser = async (userFile) => {
   console.log(data.rol);
   return data;
 };
+const getUserById = async (id) => {
+  const data = await User.findById({ _id: id });
+  console.log(data.rol);
+  return data;
+};
+const saveUser = async (user) => {
+  const data = await user.save();
+  return data;
+};
 
 const postUser = async (data) => {
   const dataUser = await User.create(data);
@@ -16,4 +25,4 @@ const getUserRol = async (userFile) => {
   return rol;
 };
 
-module.exports = { getUser, postUser, getUserRol };
+module.exports = { getUser, postUser, getUserRol, getUserById, saveUser };

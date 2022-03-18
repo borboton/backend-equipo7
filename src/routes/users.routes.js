@@ -7,6 +7,7 @@ const {
   getRolUserController,
   getUserCoursesController,
   getUserSoftwareController,
+  postAddRolUserController,
 } = require('../controllers/user.controller');
 
 const usersRouter = express.Router();
@@ -17,6 +18,7 @@ usersRouter.get('/:id/rol', getRolUserController);
 usersRouter.get('/:id/courses', getUserCoursesController);
 usersRouter.get('/:id/software', getUserSoftwareController);
 usersRouter.post('/', postUserController);
+usersRouter.post('/:id/rol/:idRol', postAddRolUserController);
 // Login with passport
 usersRouter.post('/signin', async (req, res, next) => {
   passport.authenticate('signin', async (err, user, info) => {
